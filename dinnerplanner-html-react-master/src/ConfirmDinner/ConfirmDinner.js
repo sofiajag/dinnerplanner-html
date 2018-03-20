@@ -62,7 +62,9 @@ class ConfirmDinner extends Component {
 		</div> 
 	  	<div className="row-fluid caption">
 	    	<div className="col-xs-12">
-	      		<button id="print" className="btn btn-default knapp">Print full recipe</button>
+	    		<Link to="/print">
+	      			<button id="print" className="btn btn-default knapp">Print full recipe</button>
+	      		</Link>
 	    	</div>
 	  	</div>
 	</div>

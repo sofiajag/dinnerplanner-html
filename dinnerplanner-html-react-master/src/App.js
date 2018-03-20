@@ -6,6 +6,8 @@ import { modelInstance } from './data/DinnerModel'
 import SelectDish from "./SelectDish/SelectDish";
 import ShowDish from "./ShowDish/ShowDish";
 import ConfirmDinner from "./ConfirmDinner/ConfirmDinner";
+import Print from "./Print/Print";
+
 
 
 class App extends Component {
@@ -29,6 +31,9 @@ class App extends Component {
           <Route path="/showdish/:id" render={props => <ShowDish model={modelInstance} id={props.match.params.id}/>}/>
           
           <Route path="/ConfirmDinner" render={() => <ConfirmDinner model={modelInstance}/>}/>
+          
+          <Route path="/Print" render={() => <Print model={modelInstance}/>}/>
+
 
         
         </header>
