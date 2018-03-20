@@ -10,7 +10,7 @@ class SelectDish extends Component {
     super(props);
     this.state = {
       filter: '',
-      type: 'dessert',
+      type: '',
       dishes: '',
     };
 
@@ -85,8 +85,6 @@ class SelectDish extends Component {
     this.setState({
 
     });
-    alert("SearchTerm: " + this.state.searchTerm);
-    alert("this.state.type: " + this.state.type);
 
     event.preventDefault();
     //this.fetchDishes()
@@ -140,7 +138,6 @@ class SelectDish extends Component {
             </div>
 
             <div className="row">
-              <h2>This is the Select Dish screen</h2>
               <Dishes dishes={this.state.dishes} status={this.state.status}/>
             </div>
           </div>

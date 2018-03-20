@@ -19,47 +19,16 @@ class Dishes extends Component {
     //this.doSearch = this.doSearch.bind(this)
   }
 
-  // componentDidUpdate borde kunna användas för att uppdatera listan. 
-  // componentDidUpdate = () => {
-
-  //   modelInstance.getAllDishes(this.state.searchType).then(dishes => {   //this.state.search
-  //     this.setState({
-  //       status: 'LOADED',
-  //       dishes: dishes.results
-  //     })
-  //   }).catch(() => {
-  //     this.setState({
-  //       status: 'ERROR'
-  //     })
-  //   })
-  // }
 
   // this methods is called by React lifecycle when the 
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
-
-
-
-  // doSearch() {
-  //    modelInstance.getAllDishes(this.state.searchType).then(dishes => {   //this.state.search
-  //     this.setState({
-  //       status: 'LOADED',
-  //       dishes: dishes.results
-  //     })
-  //   }).catch(() => {
-  //     this.setState({
-  //       status: 'ERROR'
-  //     })
-  //   })
-  // }
-
 
   componentDidMount = () => {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     modelInstance.addObserver(this)
 
-    alert("searchType inuti dishes.js" + this.props.searchType);
     this.setState({
       type: this.props.searchType
     })
@@ -102,16 +71,16 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.props.dishes.map((dish) =>
-          <a  key={dish.id} href={"/showdish/" + dish.id}>
+          <Link to={"/showdish/" + dish.id} key={dish.id}>
             <div className="col-md-3 col-sm-4">
               <div className="thumbnail">
-                <img src={`https://spoonacular.com/recipeImages/${dish.image}`} alt=""/>
+                <img src={`https://spoonacular.com/recipeImages/${dish.image}`} alt=""/> 
                 <div className="caption">
                   <h3>{dish.title}</h3>
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
           
         )
         break;
@@ -122,7 +91,6 @@ class Dishes extends Component {
 
     return (
       <div className="Dishes">
-        <h4>här finns {this.props.status}</h4>
         <h3>Dishes</h3>
         <ul>
           {dishesList}

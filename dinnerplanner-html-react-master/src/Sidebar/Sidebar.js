@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
+import { Link } from 'react-router-dom';
+
 class Sidebar extends Component {
 
   constructor(props) {
@@ -7,8 +9,12 @@ class Sidebar extends Component {
     
     // we put on state the properties we want to use and modify in the component
     this.state = {
-      numberOfGuests: this.props.model.getNumberOfGuests()
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      menu: this.props.model.getMenu(),
+      menuPrice: this.props.model.calcCost()
+
     }
+
   }
 
   // this methods is called by React lifecycle when the 
@@ -28,16 +34,26 @@ class Sidebar extends Component {
   // cause the component to re-render
   update() {
     this.setState({
-      numberOfGuests: this.props.model.getNumberOfGuests()
-    })
+      numberOfGuests: this.props.model.getNumberOfGuests(),
+      menu: this.props.model.getMenu(),
+      cost: this.props.model.calcCost(),
+    });
   }
-
   // our handler for the input's on change event
   onNumberOfGuestsChanged = (e) => {
     this.props.model.setNumberOfGuests(+e.target.value)
   }
 
   render() {
+    let table = null;
+          
+      table = this.state.menu.map((dishInMenu) =>
+        <tr key={dishInMenu.id}>
+          <td>{dishInMenu.title}</td>
+          <td>{parseInt(dishInMenu.pricePerServing * this.state.numberOfGuests)}</td>
+        </tr>
+      )
+          
     return (
       <div className="Sidebar">
         <h3>This is the sidebar</h3>
@@ -55,23 +71,23 @@ class Sidebar extends Component {
                 <th>Cost</th>
               </tr>
             </thead>
-            <tbody id="dinnerTable">
-
+            <tbody>
+              {table}
             </tbody>
           </table>
-
           <table>
           <tbody>
-            <tr className="Sum">
-              <td> </td>
-              <td id="sum"></td>
+            <tr>
+              <td>SEK</td>
+              <td>{this.state.menuPrice}</td>
             </tr>
           </tbody> 
           </table>
 
 
-      
-          <button id="confirm" className="btn btn-success">Confirm Dinner</button>  
+          <Link to="/ConfirmDinner">
+            <button id="confirm" className="btn btn-success">Confirm Dinner</button>  
+          </Link>
         </div>
       </div>
     );

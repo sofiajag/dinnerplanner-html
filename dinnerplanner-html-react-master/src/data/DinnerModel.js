@@ -8,7 +8,7 @@ const DinnerModel = function () {
   let numberOfGuests = 6;
   let observers = [];
   let searchType = "";
-  //let menu = [];
+  let menu = [];
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -23,8 +23,30 @@ const DinnerModel = function () {
 
   this.setSearchType = function(type) {
     searchType = type;
-    alert("inuti setSearchType: " + type);
     notifyObservers();
+  };
+
+
+  this.addToMenu = function(dish){
+      for (var i = 0; i < menu.length; i++){
+        if (menu[i].id === dish.id) {
+          return;
+        }
+      }
+      menu.push(dish);
+      notifyObservers();
+
+  };
+  this.getMenu = function () {
+    return menu;
+  };
+  //calculates the total menu price
+  this.calcCost = function () {
+    var totalCost = 0;
+    for (var i = 0; i < menu.length; i++){
+      totalCost += parseInt(menu[i].pricePerServing * numberOfGuests);
+    }
+   return totalCost;
   }
 
 

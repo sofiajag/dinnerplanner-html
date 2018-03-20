@@ -14,8 +14,10 @@ class ShowDish extends Component {
     //alert("inuti consructor");
     this.state = {
       status: 'INITIAL',
-      numberOfGuests: this.props.model.getNumberOfGuests(),
-    }
+      numberOfGuests: this.props.model.getNumberOfGuests(), 
+    };
+    this.handleAddButton = this.handleAddButton.bind(this);
+
 
   }
 
@@ -52,7 +54,10 @@ class ShowDish extends Component {
       this.setState({
         status: 'LOADED',
         dish: dishResult,
+
+
       })
+
     }).catch(() => {
       this.setState({
         status: 'ERROR'
@@ -60,7 +65,10 @@ class ShowDish extends Component {
     })
   }
 
-
+  handleAddButton(){
+    this.props.model.addToMenu(this.state.dish);
+    
+  }
   getIngredients = () => {
     //const noGuest = modelInstance.getNumberOfGuests();
     //alert("Gäster: " +this.state.numberOfGuests);
@@ -76,14 +84,6 @@ class ShowDish extends Component {
       )
   return ingredients;
   }
-
-  
-
-
-
-
-
-
   render() {
     let dishInfo = null;
     
@@ -108,7 +108,9 @@ class ShowDish extends Component {
                 </Link>
               </div>
               <div className="col-sm-6">
-                <button id="add" className="btn btn-success">Add to menu</button>
+                <Link to="/search">
+                  <button id="add" className="btn btn-success" onClick={this.handleAddButton}>Add to menu</button>
+                </Link>
               </div>
             </div>
           </div>
@@ -136,11 +138,18 @@ class ShowDish extends Component {
               <tbody>
                 {this.getIngredients()}
               </tbody>
+              <tfoot>
+                <tr>
+                  <td>SEK</td>
+                  <td>
+                    {parseInt(this.state.dish.pricePerServing * this.state.numberOfGuests)}
+                  </td>
+                </tr>
+              </tfoot>
             </table>
               
             </div>
-            
-                
+             
             <span id="td1" className="pull-right"></span>
           </div>
         </div> 
@@ -151,30 +160,12 @@ class ShowDish extends Component {
           </div>
         </div>
         </div>
-
-
-
-        
-
-
-           
-        
         break;
-
 
       default:
         dishInfo = <b>Failed to load data, please try again</b>
         break;
-    }
-
-
-
-
-
-
-
-
-
+    };
 
     return (
       <div className="ShowDish">
@@ -189,9 +180,6 @@ class ShowDish extends Component {
           
         </div>
         
-
-
-
       </div>
     );
   }
