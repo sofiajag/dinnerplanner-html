@@ -8,6 +8,7 @@ const DinnerModel = function () {
   let numberOfGuests = 6;
   let observers = [];
   let searchType = "";
+  let inputData = "";
   let menu = [];
 
   this.setNumberOfGuests = function (num) {
@@ -20,12 +21,16 @@ const DinnerModel = function () {
   };
 
 
-
+//sets the type for the seach of dishes in get all dishes.
   this.setSearchType = function(type) {
     searchType = type;
     notifyObservers();
   };
-
+//sets the input from user for the seach of dishes in get all dishes.
+  this.setInputData = function(data) {
+    inputData = data;
+    notifyObservers();
+  };
 
   this.addToMenu = function(dish){
       for (var i = 0; i < menu.length; i++){
@@ -44,7 +49,7 @@ const DinnerModel = function () {
   this.calcCost = function () {
     var totalCost = 0;
     for (var i = 0; i < menu.length; i++){
-      totalCost += parseInt(menu[i].pricePerServing * numberOfGuests);
+      totalCost += parseInt(menu[i].pricePerServing * numberOfGuests, 10);
     }
    return totalCost;
   }
@@ -53,11 +58,10 @@ const DinnerModel = function () {
   // API Calls
 
   this.getAllDishes = function () {
-    //kom ihåg att lägga till filter och type som input. 
     //alert("getAllDishes - searchTerm: "); // + data);
-    
-    const typeurl = 'type=' + searchType;
-    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?' + typeurl; //?type=' + data;
+ 
+    const searchurl = 'type=' + searchType + "&query=" + inputData;
+    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?' + searchurl;
     return fetch(url, httpOptions)
       .then(processResponse)
       .catch(handleError)

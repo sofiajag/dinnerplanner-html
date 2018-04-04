@@ -67,6 +67,9 @@ class ShowDish extends Component {
 
   handleAddButton(){
     this.props.model.addToMenu(this.state.dish);
+    localStorage.removeItem('menu');
+    localStorage.setItem('menu', this.props.model.getMenu());
+
     
   }
   getIngredients = () => {
@@ -124,7 +127,7 @@ class ShowDish extends Component {
 
           <div className="col-sm-4 col-xs-12">
            
-            <h3 id="ingrFor"></h3>
+            <h3>Ingredients for {this.state.numberOfGuests} people: </h3>
             <div id="table">
 
             <table className="table">
@@ -142,7 +145,7 @@ class ShowDish extends Component {
                 <tr>
                   <td>SEK</td>
                   <td>
-                    {parseInt(this.state.dish.pricePerServing * this.state.numberOfGuests)}
+                    {parseInt(this.state.dish.pricePerServing * this.state.numberOfGuests, 10)}
                   </td>
                 </tr>
               </tfoot>

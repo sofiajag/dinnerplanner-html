@@ -50,7 +50,7 @@ class Sidebar extends Component {
       table = this.state.menu.map((dishInMenu) =>
         <tr key={dishInMenu.id}>
           <td>{dishInMenu.title}</td>
-          <td>{parseInt(dishInMenu.pricePerServing * this.state.numberOfGuests)}</td>
+          <td>{parseInt(dishInMenu.pricePerServing * this.state.numberOfGuests, 10)}</td>
         </tr>
       )
           

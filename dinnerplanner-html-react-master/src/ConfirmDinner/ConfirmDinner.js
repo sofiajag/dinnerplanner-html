@@ -27,7 +27,7 @@ class ConfirmDinner extends Component {
 	  					<h3>{dish.title}</h3>
 	  				</div>
 	  			</div>
-	  			<h4 className="pull-right "> {parseInt(dish.pricePerServing * this.state.numberOfGuests)} SEK </h4>
+	  			<h4 className="pull-right "> {parseInt(dish.pricePerServing * this.state.numberOfGuests, 10)} SEK </h4>
 	  		</div>
 
 
