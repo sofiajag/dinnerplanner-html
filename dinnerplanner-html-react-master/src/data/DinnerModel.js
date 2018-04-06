@@ -42,6 +42,18 @@ const DinnerModel = function () {
       notifyObservers();
 
   };
+
+  this.removeDish = function(dishId) {
+    //console.log("inside removeDish in model");
+    //console.log("id: " + dishId);
+    for (var i = 0; i < menu.length; i++){
+        if (menu[i].id === dishId) {
+          menu.splice(i,1);
+        }
+      }      
+      notifyObservers();
+  }
+  
   this.getMenu = function () {
     return menu;
   };

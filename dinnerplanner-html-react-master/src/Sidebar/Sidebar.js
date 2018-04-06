@@ -30,6 +30,12 @@ class Sidebar extends Component {
     this.props.model.removeObserver(this)
   }
 
+  handleRemove(dishId) {
+    console.log("inside handle remove");
+    console.log("id: " + dishId);
+    this.props.model.removeDish(dishId);
+  }
+
   // in our update function we modify the state which will
   // cause the component to re-render
   update() {
@@ -51,6 +57,8 @@ class Sidebar extends Component {
         <tr key={dishInMenu.id}>
           <td>{dishInMenu.title}</td>
           <td>{parseInt(dishInMenu.pricePerServing * this.state.numberOfGuests, 10)}</td>
+          <td><p onClick={() => this.handleRemove(dishInMenu.id)}><i class="fa fa-trash" aria-hidden="true"></i>
+</p></td>
         </tr>
       )
           
