@@ -50,7 +50,8 @@ const DinnerModel = function () {
         if (menu[i].id === dishId) {
           menu.splice(i,1);
         }
-      }      
+      }
+      
       notifyObservers();
   }
   
@@ -59,12 +60,14 @@ const DinnerModel = function () {
   };
   //calculates the total menu price
   this.calcCost = function () {
+    
     var totalCost = 0;
     for (var i = 0; i < menu.length; i++){
       totalCost += parseInt(menu[i].pricePerServing * numberOfGuests, 10);
     }
    return totalCost;
   }
+
 
 
   // API Calls

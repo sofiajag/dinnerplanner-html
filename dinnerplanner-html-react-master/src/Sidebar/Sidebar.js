@@ -42,7 +42,7 @@ class Sidebar extends Component {
     this.setState({
       numberOfGuests: this.props.model.getNumberOfGuests(),
       menu: this.props.model.getMenu(),
-      cost: this.props.model.calcCost(),
+      menuPrice: this.props.model.calcCost(),
     });
   }
   // our handler for the input's on change event
