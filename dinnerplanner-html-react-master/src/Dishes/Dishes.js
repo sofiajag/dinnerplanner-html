@@ -71,16 +71,16 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.props.dishes.map((dish) =>
+          <div className="col-md-3 col-sm-4">
           <Link to={"/showdish/" + dish.id} key={dish.id}>
-            <div className="col-md-3 col-sm-4">
-              <div className="thumbnail">
-                <img src={`https://spoonacular.com/recipeImages/${dish.image}`} alt=""/> 
-                <div className="caption">
-                  <h3>{dish.title}</h3>
-                </div>
+            <div className="thumbnail">
+              <img className="center-cropped" src={`https://spoonacular.com/recipeImages/${dish.image}`} alt=""/> 
+              <div className="caption">
+                <h3>{dish.title}</h3>
               </div>
             </div>
           </Link>
+          </div>
           
         )
         break;
@@ -92,9 +92,12 @@ class Dishes extends Component {
     return (
       <div className="Dishes">
         <h3>Dishes</h3>
-        <ul>
-          {dishesList}
-        </ul>
+        <div className="container">
+          <div className="row row-eq-height">
+            {dishesList}
+          </div>
+        </div>
+        
       </div>
     );
   }
