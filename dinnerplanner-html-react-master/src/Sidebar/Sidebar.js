@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
 import { Link } from 'react-router-dom';
-import { navbar, Jumbotron, Button, Collapse } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, Button, Collapse } from 'react-bootstrap';
 
 class Sidebar extends Component {
 
@@ -72,27 +72,22 @@ class Sidebar extends Component {
 
       <div className="Sidebar well">
         <div className="sidebar-module sidebar-module-inset">
-          <nav className="Navbar navbar-default navbar-static-top ">
             <div className="container-fluid">
-          
-                <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapseSide" aria-expanded="false">
-                  <span className="sr-only"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                  <span className="icon-bar"></span>
-                </button>
-                <div className="navbar-brand">
-                  <h4>My Dinner: {this.state.menuPrice} SEK</h4>
-                </div>
-                <div className="collapse navbar-collapse" id="collapseSide">
-                  <ul className="nav navbar-nav">  
-                    <p>
-                    Number of Guests: <input id="Input" value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
-                
-                    </p>
-                   <div className="sidebar-module">
+              <Navbar>
+                <Navbar.Header>
+                  <Navbar.Brand>
+                    <h4>My Dinner: {this.state.menuPrice} SEK</h4>
+                  </Navbar.Brand>
+                  <Navbar.Toggle />
+                </Navbar.Header>
+                <Navbar.Collapse>
+                  <Nav>
+                    <NavItem>
+                      <p>Number of Guests: <input id="Input" value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/></p>
+                    </NavItem>
+                    <NavItem>
                     <table className="table">
-                      <thead>
+                    <thead>
                         <tr>
                           <th>Dish Name</th>
                           <th>Cost</th>
@@ -102,6 +97,8 @@ class Sidebar extends Component {
                         {table}
                       </tbody>
                     </table>
+                    </NavItem>
+                    <NavItem>
                     <table>
                     <tbody>
                       <tr>
@@ -110,16 +107,16 @@ class Sidebar extends Component {
                       </tr>
                     </tbody> 
                     </table>
-
-
-                    <Link to="/ConfirmDinner">
+                    </NavItem>
+                    <NavItem href="/ConfirmDinner">
                       <button id="confirm" className="btn btn-success">Confirm Dinner</button>  
-                    </Link>
-                  </div>
-                </ul>
-              </div>
-            </div>
-          </nav>
+                    </NavItem>
+
+                  </Nav>
+                </Navbar.Collapse>
+              </Navbar>
+            
+          </div>   
         </div>
       </div>
     );
