@@ -16,6 +16,7 @@ class ShowDish extends Component {
       status: 'INITIAL',
       numberOfGuests: this.props.model.getNumberOfGuests(), 
     };
+
     this.handleAddButton = this.handleAddButton.bind(this);
 
 
@@ -67,9 +68,6 @@ class ShowDish extends Component {
 
   handleAddButton(){
     this.props.model.addToMenu(this.state.dish);
-    localStorage.removeItem('menu');
-    localStorage.setItem('menu', this.props.model.getMenu());
-
     
   }
   getIngredients = () => {

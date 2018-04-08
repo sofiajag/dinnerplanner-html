@@ -9,58 +9,47 @@ class SelectDish extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      status: 'INITIAL',
       filter: '',
       type: '',
+      search: '',
       dishes: '',
     };
 
 
 
-    //this.fetchDishes = this.fetchDishes.bind(this)
+    this.fetchDishes = this.fetchDishes.bind(this)
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   fetchDishes() {
-
-    //något blir fel vid inläsningen av dishes, result innehåller inget. 
-
-    this.props.model.getAllDishes().then(dishes => {   //this.state.search
+    this.props.model.getAllDishes(localStorage.getItem("SearchTerm")).then(dishes => {   //
       this.setState({
         status: 'LOADED',
         dishes: dishes.results
-      })
-            console.log("loaded" +  this.state.type);
+      });
+
 
 
 
     }).catch(() => {
       this.setState({
         status: 'ERROR'
-      })
-     console.log("error");
+      });
 
-    })
-
-    // this.setState({
-    //   dishes: resultat
-    // })
+    });
   }
 
 
   // this methods is called by React lifecycle when the 
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to setup model observer
-  componentDidMount() {
-
+  componentDidMount() { 
     this.props.model.addObserver(this);
     this.fetchDishes();
-    let type = localStorage.getItem("SelectedType");
 
-    this.setState({
-      type: type,
-    });
   }
 
   // this is called when component is removed from the DOM
@@ -86,7 +75,8 @@ class SelectDish extends Component {
     let Filter = localStorage.getItem("InputData");
 
     this.setState({
-      filter: Filter,
+        filter: Filter,
+
     });
     
   }
@@ -99,30 +89,30 @@ class SelectDish extends Component {
     let Type = localStorage.getItem("SelectedType");
 
     this.setState({
-      type: Type
+      type: Type,
+
     });
 
   }
 
   handleSubmit(event){
-
-    this.props.model.setSearchType(this.state.type);
-    this.props.model.setInputData(this.state.filter);
+    localStorage.removeItem('SearchTerm');
+    localStorage.setItem('SearchTerm', this.state.type + '&query=' + this.state.filter);
+    let searchTerm = localStorage.getItem('SearchTerm');
 
     this.setState({
-      Uppdate: 'yes'
+      search: searchTerm,
+
     });
 
-    event.preventDefault();
-    //this.fetchDishes()
 
+    //event.preventDefault();
   }
 
   
 
 
   render() {
-    //const searchTerm = this.state.type + '&query=' + this.state.filter;
 
     return (
       <div className="SelectDish">
@@ -139,10 +129,10 @@ class SelectDish extends Component {
                 <h2>Find a dish</h2>
                 <form onSubmit={this.handleSubmit} className="form-inline">
                   <div className="form-group">
-                    <input className="form-control" type="text" onChange={this.handleInputChange} value={this.state.filter} id="keywords" placeholder="Enter key words"/>
+                    <input className="form-control" type="text" onChange={this.handleInputChange} placeholder="Enter key words" id="keywords"/>
                   </div>
                   <div className="form-group">
-                    <select id="selectOption" className="form-control" value={this.state.type} onChange={this.handleSelectChange}>
+                    <select id="selectOption" className="form-control" value={localStorage.getItem("SelectedType")} onChange={this.handleSelectChange}>
                       <option value="">All</option>
                       <option value="main+dish">Main Course</option>
                       <option value="side+dish">Side Dish</option>
@@ -162,13 +152,12 @@ class SelectDish extends Component {
                     <button type="submit" id="searchButton" value="submit" className="form-control btn btn-default">Search</button>
                   </div>                  
                 </form>
-                <div>
-                {this.state.typ}</div>
               </div>
             </div>
 
             <div className="row">
-              <Dishes dishes={this.state.dishes} status={this.state.status}/>
+              {/* We pass the result: dishes and status as property to the Dishes component */}
+              <Dishes dishes={this.state.dishes} status={this.state.status} />
             </div>
           </div>
         </div>  

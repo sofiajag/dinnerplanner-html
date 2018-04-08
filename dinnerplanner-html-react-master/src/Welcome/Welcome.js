@@ -5,19 +5,24 @@ import { Link } from 'react-router-dom';
 class Welcome extends Component {
   render() {
     return (
+<div id="homeView" className="container home">
 
-      <div>
-        <p>
-            Welcome to the dinner planner React Startup code!
-        </p>
+      <div className="content">
+        <h3>
+            Welcome to the dinner planner!
+        </h3>
         
+        <hr></hr>
+
         <Link to="/search">
-            <button>Start planning</button>
+            <button className="btn btn-default btn-lg">Start planning</button>
         </Link>
       
       </div>
+</div>
     );
   }
 }
 
 export default Welcome;
+

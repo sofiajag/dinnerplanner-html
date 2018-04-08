@@ -13,8 +13,6 @@ class Dishes extends Component {
     // e.g. API data loading or error 
     this.state = {
       status: 'INITIAL',
-      searchType: '',
-      filter: '',
     }
     //this.doSearch = this.doSearch.bind(this)
   }
@@ -30,9 +28,9 @@ class Dishes extends Component {
     modelInstance.addObserver(this)
 
     this.setState({
-      type: this.props.searchType
+      update: 'yes',
+      
     })
-    //this.doSearch();
 
   }
 
@@ -47,10 +45,8 @@ class Dishes extends Component {
   // cause the component to re-render
   update() {
     this.setState({
-      type: this.props.searchType,
-      // filter: this.props.searchFilter,
+      update: 'yess',
     });
-    //this.doSearch();
   }
 
 
@@ -71,8 +67,8 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.props.dishes.map((dish) =>
-          <div className="col-md-3 col-sm-4">
-          <Link to={"/showdish/" + dish.id} key={dish.id}>
+          <div className="col-md-3 col-sm-4" key={dish.id}>
+          <Link to={"/showdish/" + dish.id} >
             <div className="thumbnail">
               <img className="center-cropped" src={`https://spoonacular.com/recipeImages/${dish.image}`} alt=""/> 
               <div className="caption">
