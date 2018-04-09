@@ -1,10 +1,10 @@
 body {
     padding: 0px 0px;
 }
-.row {
+/*.row {
     height: 100%;
     display: table-row;
-}
+}*/
 .row .no-float {
   display: table-cell;
   float: none;

@@ -125,40 +125,45 @@ class SelectDish extends Component {
 
           <div className="col-md-9">
             <div className="row">
-              <div>
-                <h2>Find a dish</h2>
-                <form onSubmit={this.handleSubmit} className="form-inline">
-                  <div className="form-group">
-                    <input className="form-control" type="text" onChange={this.handleInputChange} placeholder="Enter key words" id="keywords"/>
-                  </div>
-                  <div className="form-group">
-                    <select id="selectOption" className="form-control" value={localStorage.getItem("SelectedType")} onChange={this.handleSelectChange}>
-                      <option value="">All</option>
-                      <option value="main+dish">Main Course</option>
-                      <option value="side+dish">Side Dish</option>
-                      <option value="dessert">Dessert</option>
-                      <option value="appetizer">Appetizer</option>
-                      <option value="salad">Salad</option>
-                      <option value="bread">Bread</option>
-                      <option value="breakfast">Breakfast</option>
-                      <option value="soup">Soup</option>
-                      <option value="beverage">Beverage</option>
-                      <option value="sauce">Sauce</option>
-                      <option value="drink">Drink</option>
-                    </select>
-                  </div>
+              <div className="col-sm-12">
+                <div>
+                  <h2>Find a dish</h2>
+                  <form onSubmit={this.handleSubmit} className="form-inline">
+                    <div className="form-group">
+                      <input className="form-control" type="text" onChange={this.handleInputChange} placeholder="Enter key words" id="keywords"/>
+                    </div>
+                    <div className="form-group">
+                      <select id="selectOption" className="form-control" value={localStorage.getItem("SelectedType")} onChange={this.handleSelectChange}>
+                        <option value="">All</option>
+                        <option value="main+dish">Main Course</option>
+                        <option value="side+dish">Side Dish</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="appetizer">Appetizer</option>
+                        <option value="salad">Salad</option>
+                        <option value="bread">Bread</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="soup">Soup</option>
+                        <option value="beverage">Beverage</option>
+                        <option value="sauce">Sauce</option>
+                        <option value="drink">Drink</option>
+                      </select>
+                    </div>
 
-                  <div className="form-group">
-                    <button type="submit" id="searchButton" value="submit" className="form-control btn btn-default">Search</button>
-                  </div>                  
-                </form>
+                    <div className="form-group">
+                      <button type="submit" id="searchButton" value="submit" className="form-control btn btn-default">Search</button>
+                    </div>                  
+                  </form>
+                </div>
               </div>
             </div>
 
             <div className="row">
-              {/* We pass the result: dishes and status as property to the Dishes component */}
-              <Dishes dishes={this.state.dishes} status={this.state.status} />
+              <div className="col-sm-12">
+                {/* We pass the result: dishes and status as property to the Dishes component */}
+                <Dishes dishes={this.state.dishes} status={this.state.status} />
+              </div>
             </div>
+
           </div>
         </div>  
       </div>
