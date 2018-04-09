@@ -43,10 +43,10 @@ class Print extends Component {
     return (
    	<div className="printView row">
    		<div className="row">
-	      <div className="col-sm-9" >
+	      <div className="col-sm-9 col-xs-12" >
 	      	<h2>My dinner: {this.state.numberOfGuests} people</h2> 
 	      </div>
-	      <div className="col-sm-3">
+	      <div className="col-sm-3 col-xs-12">
 	      	<Link to="/search">
 	        	<button className="btn btn-default">Go back and edit dinner</button>
 	        </Link>
