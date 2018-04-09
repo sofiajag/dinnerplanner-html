@@ -125,8 +125,7 @@ class SelectDish extends Component {
 
           <div className="col-md-9">
             <div className="row">
-              <div className="col-sm-12">
-                <div>
+              <div>
                 <h2>Find a dish</h2>
                 <form onSubmit={this.handleSubmit} className="form-inline">
                   <div className="form-group">
@@ -154,15 +153,11 @@ class SelectDish extends Component {
                   </div>                  
                 </form>
               </div>
-              </div>
-              
             </div>
 
             <div className="row">
-              <div className="col-sm-12">
-                {/* We pass the result: dishes and status as property to the Dishes component */}
-                <Dishes dishes={this.state.dishes} status={this.state.status} />
-              </div>
+              {/* We pass the result: dishes and status as property to the Dishes component */}
+              <Dishes dishes={this.state.dishes} status={this.state.status} />
             </div>
           </div>
         </div>  
