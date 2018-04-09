@@ -109,6 +109,7 @@ const DinnerModel = function () {
       console.error('getAllDishes() API Error:', error.message || error)
 
     }
+    throw error;
   }
 
   // Observer pattern

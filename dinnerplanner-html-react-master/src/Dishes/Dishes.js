@@ -70,7 +70,7 @@ class Dishes extends Component {
           <div className="col-md-3 col-sm-4" key={dish.id}>
           <Link to={"/showdish/" + dish.id} >
             <div className="thumbnail">
-              <img className="center-cropped" src={`https://spoonacular.com/recipeImages/${dish.image}`} alt=""/> 
+              <img src={`https://spoonacular.com/recipeImages/${dish.image}`} alt=""/> 
               <div className="caption">
                 <h3>{dish.title}</h3>
               </div>
@@ -81,7 +81,7 @@ class Dishes extends Component {
         )
         break;
       default:
-        dishesList = <b>Failed to load data, please try again</b>
+        dishesList = <b>Failed to load data, please try again. Verify that you have network connection, please. </b>
         break;
     }
 

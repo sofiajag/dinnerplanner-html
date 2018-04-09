@@ -55,13 +55,11 @@ class ShowDish extends Component {
       this.setState({
         status: 'LOADED',
         dish: dishResult,
-
-
       })
 
     }).catch(() => {
       this.setState({
-        status: 'ERROR'
+        status: 'ERROR',
       })
     })
   }
@@ -86,6 +84,7 @@ class ShowDish extends Component {
   return ingredients;
   }
   render() {
+    console.log(this.state.status);
     let dishInfo = null;
     
     // depending on the state we either generate
@@ -164,7 +163,7 @@ class ShowDish extends Component {
         break;
 
       default:
-        dishInfo = <b>Failed to load data, please try again</b>
+        dishInfo = <s>Please check your network.</s>
         break;
     };
 
